@@ -1,0 +1,52 @@
+package Final_Project;
+import kareltherobot.*; 
+import java.util.Scanner;
+
+/**
+ * @author :  D. Appel
+ */
+public class EllensBot extends Robot
+{
+    public EllensBot(int st, int av, Direction dir, int numBeepers) {
+        super(st, av, dir, numBeepers);
+    }
+    
+    public void solveMaze() {
+        Scanner scan = new Scanner(System.in);
+        boolean solved = false;
+        String direction;
+        while (!solved) {
+            System.out.println("Enter the direction you wish to move.");
+            System.out.println("Your options are: left, right, up, down");
+            direction = scan.nextLine();
+            if (direction.equals("left")) {
+                while(!facingWest()) {
+                    turnLeft();
+                }
+                move();
+            }
+            else if (direction.equals("right")) {
+                while(!facingEast()) {
+                    turnLeft();
+                }
+                move();
+            }
+            else if (direction.equals("up")) {
+                while(!facingNorth()) {
+                    turnLeft();
+                }
+                move();
+            }
+            else if (direction.equals("down")) {
+                while(!facingSouth()) {
+                    turnLeft();
+                }
+                move();
+            }
+            if (nextToABeeper()) {
+                solved=true;
+            }
+        }
+    }
+}
+
