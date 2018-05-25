@@ -1,0 +1,50 @@
+package Final_Project;
+
+import kareltherobot.*;
+import java.awt.Color;
+
+public class ArrayWorld implements Directions { 
+    int[][] gridN,gridS,gridE,gridW;
+    
+    public ArrayWorld(int size) {
+        gridN = new int[size][size];
+        gridS = new int[size][size];
+        gridE = new int[size][size];
+        gridW = new int[size][size];
+    }
+    public void makeMaze() {
+        
+    }
+    public void printWorld() {
+        World.reset();
+        World.setSize(gridN.length, gridN.length);
+        for (int n=0; n<gridN.length;n++) {
+            for (int m=0;m<gridN[0].length;m++) {
+                if (gridN[n][m]==0) {
+                    World.placeEWWall(n,m,1);
+                }
+            }
+        }
+        for (int s=0; s<gridS.length;s++) {
+            for (int t=0;t<gridS[0].length;t++) {
+                if (gridS[s][t]==0) {
+                    World.placeEWWall(s-1,t,1);
+                }
+            }
+        }
+        for (int e=0; e<gridE.length;e++) {
+            for (int f=0;f<gridE[0].length;f++) {
+                if(gridE[e][f]==0) {
+                    World.placeNSWall(f,e,1);
+                }
+            }
+        }
+        for (int w=0; w<gridW.length;w++) {
+            for (int v=0; v<gridW[0].length;v++) {
+                if (gridW[w][v]==0) {
+                    World.placeNSWall(v,w-1,1);
+                }
+            }
+        }
+    }
+}
